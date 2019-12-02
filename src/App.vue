@@ -37,6 +37,16 @@
     text-align: center;
   }
 
+  .login-form {
+    border: 1px solid #95a5a6;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .forgot-password {
+    float: right;
+  }
+
   .card {
     margin-bottom: 10px;
   }
@@ -69,15 +79,9 @@
     border: 1px solid #95a5a6;
       border-radius: 5px;
       padding: 10px;
-  }
+  }  
 
-  .login-form {
-    border: 1px solid #95a5a6;
-    border-radius: 5px;
-      padding: 10px;
-  }
-
-  .forgot-password {
-    float: right;
+  .quillWrapper {
+    background: white;
   }
 </style>

@@ -24,9 +24,6 @@
 				  <div class="text-center">
 				  	<button type="submit" class="btn btn-success">Kayıt Ol</button>
 				  </div>
-				  <div class="text-center mt-3">
-				  	<button type="submit" class="btn btn-danger">Google ile kayıt ol</button>
-				  </div>
 				</form>
 			</div>
 		</div>
