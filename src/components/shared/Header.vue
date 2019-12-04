@@ -29,7 +29,9 @@
 							yusufborucu
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="#">Profil</a>
+							<router-link to="/profile" tag="a" class="dropdown-item">
+								Profil
+							</router-link>
 							<a class="dropdown-item" @click.prevent="logout" href="#">Çıkış Yap</a>
 						</div>
 					</div>		

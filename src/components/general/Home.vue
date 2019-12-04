@@ -20,7 +20,7 @@
 				    	<span class="border p-2">{{ question.reading }} okunma</span>
 				    </div>
 				    <div class="author-date">
-				    	<img src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png" height="30" width="30">
+				    	<img src="../../assets/profile.png" height="30" width="30">
 				    	<span>{{ question.user.username }}</span>
 				    	<br>
 				    	<span class="date">{{ question.date }}</span>
@@ -43,17 +43,17 @@
 					<h2>En İyiler</h2>
 					<ul class="list-group">
 					  <li class="list-group-item d-flex justify-content-between align-items-center">
-					  	<img src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png" height="30" width="30">
+					  	<img src="../../assets/profile.png" height="30" width="30">
 					    yusufborucu
 					    <span class="badge badge-success badge-pill">14</span>
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">
-					    <img src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png" height="30" width="30">
+					    <img src="../../assets/profile.png" height="30" width="30">
 					    yusufborucu
 					    <span class="badge badge-success badge-pill">2</span>
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">
-					    <img src="https://www.searchpng.com/wp-content/uploads/2019/02/Deafult-Profile-Pitcher.png" height="30" width="30">
+					    <img src="../../assets/profile.png" height="30" width="30">
 					    yusufborucu
 					    <span class="badge badge-success badge-pill">1</span>
 					  </li>

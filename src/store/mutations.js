@@ -5,3 +5,7 @@ export const setToken = (state, token) => {
 export const clearToken = (state) => {
   state.token = "";
 };
+
+export const setUser = (state, user) => {
+  state.user = user;
+};

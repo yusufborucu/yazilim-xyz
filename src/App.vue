@@ -84,4 +84,22 @@
   .quillWrapper {
     background: white;
   }
+
+  .username {
+    font-size: 20px;
+  }
+  
+  .user-feature {
+    border: 1px solid #343a40;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .image-upload > input {
+    display: none;
+  }
+
+  .image-upload > label > img:hover {
+    transform: scale(1.1);
+  }
 </style>

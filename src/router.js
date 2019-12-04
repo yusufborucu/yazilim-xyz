@@ -9,6 +9,7 @@ import Register from "./components/user/Register";
 import Login from "./components/user/Login";
 import Forgot from "./components/user/Forgot";
 import NewPassword from "./components/user/NewPassword";
+import Profile from "./components/user/Profile";
 
 // question
 import AskQuestion from "./components/question/AskQuestion";
@@ -26,7 +27,19 @@ const routes = [
         component: AskQuestion, 
         beforeEnter(to, from, next) { 
             let token = localStorage.getItem("token");
-            if(token) {
+            if (token) {
+                next();
+            } else {
+                next("/");
+            }
+        }
+    },
+    {
+        path: "/profile",
+        component: Profile,
+        beforeEnter(to, from, next) {
+            let token = localStorage.getItem("token");
+            if (token) {
                 next();
             } else {
                 next("/");

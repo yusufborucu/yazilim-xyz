@@ -1,5 +1,6 @@
 import Vue from "vue";
 import { API_URL } from "../config/env";
+import { router } from "../router";
 
 export const initAuth = ({ commit, dispatch }) => {
   let token = localStorage.getItem("token");
@@ -30,6 +31,7 @@ export const logout = ({ commit, dispatch, state }) => {
     .then(response => {
       commit("clearToken");
       localStorage.removeItem("token");
+      router.replace("/");
     });  
 };
 
@@ -42,6 +44,20 @@ export const forgot = ({ commit, dispatch, state }, data) => {
 
 export const new_password = ({ commit, dispatch, state }, data) => {
   Vue.http.post(`${API_URL}/new_password/` + data.remember_token, data)
+    .then(response => {
+      
+    });
+};
+
+export const profile = ({ commit, dispatch, state }) => {
+  Vue.http.get(`${API_URL}/profile`)
+    .then(response => {
+      commit("setUser", response.body);
+    });
+};
+
+export const update_profile = ({ commit, dispatch, state }, data) => {
+  Vue.http.post(`${API_URL}/profile`, data)
     .then(response => {
       
     });
