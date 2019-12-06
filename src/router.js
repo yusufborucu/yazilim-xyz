@@ -13,6 +13,7 @@ import Profile from "./components/user/Profile";
 
 // question
 import AskQuestion from "./components/question/AskQuestion";
+import QuestionDetail from "./components/question/QuestionDetail";
 
 Vue.use(VueRouter);
 
@@ -22,18 +23,6 @@ const routes = [
     { path: "/login", component: Login },
     { path: "/forgot", component: Forgot },
     { path: "/new-password/:remember_token", component: NewPassword },
-    { 
-        path: "/ask-question", 
-        component: AskQuestion, 
-        beforeEnter(to, from, next) { 
-            let token = localStorage.getItem("token");
-            if (token) {
-                next();
-            } else {
-                next("/");
-            }
-        }
-    },
     {
         path: "/profile",
         component: Profile,
@@ -46,6 +35,19 @@ const routes = [
             }
         }
     },
+    { 
+        path: "/ask-question", 
+        component: AskQuestion, 
+        beforeEnter(to, from, next) { 
+            let token = localStorage.getItem("token");
+            if (token) {
+                next();
+            } else {
+                next("/");
+            }
+        }
+    },    
+    { path: "/question-detail/:id", component: QuestionDetail },
     { path: "*", redirect: "/" }
 ];
 

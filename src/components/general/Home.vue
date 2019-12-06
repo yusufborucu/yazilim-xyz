@@ -8,7 +8,11 @@
 					v-bind:key="question.id"
 					v-for="question in getQuestions">
 				  <div class="card-body">
-				    <h5 class="card-title">{{ question.title }}</h5>
+				    <h5 class="card-title">
+							<router-link :to="{ path: 'question-detail/' + question.id }" tag="a">
+								{{ question.title }}
+							</router-link>
+						</h5>
 				    <div class="tags">
 				    	<span 
 								class="border p-1 mr-1" 
@@ -20,7 +24,7 @@
 				    	<span class="border p-2">{{ question.reading }} okunma</span>
 				    </div>
 				    <div class="author-date">
-				    	<img src="../../assets/profile.png" height="30" width="30">
+				    	<img :src="question.user.image != null ? api_url + question.user.image : '../../dist/profile.png'" height="30" width="30">
 				    	<span>{{ question.user.username }}</span>
 				    	<br>
 				    	<span class="date">{{ question.date }}</span>
@@ -89,10 +93,17 @@
 
 <script>
 	import { mapGetters } from "vuex";
+	import { API_URL } from "../../config/env";
 	
 	export default {
+		data() {
+			return {
+				api_url: ""
+			}
+		},
 		created() {
 			this.$store.dispatch("last_questions");
+			this.api_url = API_URL;
 		},
 		computed: {
 			...mapGetters(["getQuestions"])

@@ -2,6 +2,7 @@
   <div>
     <app-header></app-header>
     <router-view></router-view>
+    <br/><br/>
     <app-footer></app-footer>
   </div>
 </template>
@@ -28,7 +29,7 @@
   }
 
   footer {
-    position: fixed;
+    /*position: fixed;*/
     left: 0;
     bottom: 0;
     width: 100%;
@@ -101,5 +102,23 @@
 
   .image-upload > label > img:hover {
     transform: scale(1.1);
+  }
+
+  .card-title > a {
+    text-decoration: none;
+  }
+
+  pre {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px;
+  }
+
+  .vote {
+    min-width: 50px;
+  }
+
+  .vote-count {
+    margin: 10px;
   }
 </style>
