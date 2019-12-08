@@ -93,7 +93,8 @@
       return {
         api_url: "",
         image: null,
-        editAbout: ""
+        editAbout: "",
+        fileSelected: false
       }
     },
     created() {
@@ -114,6 +115,8 @@
         get() {
           if (this.image != null) {
             return URL.createObjectURL(this.image);
+          } else if (!this.fileSelected) {
+            return null;
           } else {
             return this.api_url + this.getUser.image;
           }
@@ -125,6 +128,7 @@
     },
     methods: {
       onFileSelected(e) {
+        this.fileSelected = true;
         this.image = e.target.files[0];
       },
       onSubmit() {

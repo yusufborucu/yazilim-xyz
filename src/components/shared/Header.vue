@@ -26,7 +26,7 @@
           </router-link>		
 					<div class="dropdown" :class="logoutClass">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							yusufborucu
+							{{ username }}
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<router-link to="/profile" tag="a" class="dropdown-item">
@@ -63,6 +63,9 @@
 					'd-none': !this.$store.getters.isAuthenticated,
 					'd-inline': this.$store.getters.isAuthenticated
 				}
+			},
+			username() {
+				return localStorage.getItem("username");
 			}
 		}
 	}

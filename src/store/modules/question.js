@@ -51,6 +51,12 @@ const actions = {
       .then(response => {
         dispatch("question_detail", { id: data.question_id });
       });
+  },
+  vote({ commit, dispatch, state }, data) {
+    Vue.http.post(`${API_URL}/vote`, data)
+      .then(response => {
+        dispatch("question_detail", { id: data.question_id });
+      });
   }
 };
 

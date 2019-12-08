@@ -49,10 +49,12 @@
             <br/>
             <span class="date">{{ answer.date }}</span>
           </div>   
-          <div>
-            <button class="btn btn-outline-success vote"><i class="fas fa-check"></i></button>
-            <span class="vote-count">0</span>
-            <button class="btn btn-outline-danger vote"><i class="fas fa-times"></i></button>
+          <div v-if="answer.user_id != user_id">
+            <button class="vote" :class="successButton(answer)" @click="vote(answer.id, true)"><i class="fas fa-check"></i></button>
+            <span class="vote-count">{{ answer.score }}</span>
+            <button class="vote" :class="dangerButton(answer)" @click="vote(answer.id, false)"><i class="fas fa-times"></i></button>
+          </div>
+          <div style="min-height: 38px;" v-else>
           </div>
           <hr/>
         </div>                        
@@ -102,7 +104,10 @@
 				} else {
 					return true;
 				}
-			}
+      },
+      user_id() {
+        return localStorage.getItem("user_id");
+      }
     },
     methods: {
       onSubmit() {
@@ -112,6 +117,42 @@
           answer: this.answer
         };
 				this.$store.dispatch("reply", { ...data });
+      },
+      vote(answer_id, status) {
+        let data = {
+          question_id: this.$route.params.id,
+          answer_id,
+          status
+        };
+        this.$store.dispatch("vote", { ...data });
+      },
+      successButton(answer) {
+        let user_id = this.user_id;
+        var exist = answer.scores.filter(function(item) {
+          return item.user_id == user_id;
+        });
+        if (exist.length == 0) {
+          return 'btn btn-outline-success';
+        } else {
+          return {
+            'btn btn-success': exist[0].status == 1,
+            'btn btn-outline-success': exist[0].status == 0
+          }
+        }
+      },
+      dangerButton(answer) {
+        let user_id = this.user_id;
+        var exist = answer.scores.filter(function(item) {
+          return item.user_id == user_id;
+        });
+        if (exist.length == 0) {
+          return 'btn btn-outline-danger';
+        } else {
+          return {
+            'btn btn-danger': exist[0].status == 0,
+            'btn btn-outline-danger': exist[0].status == 1
+          }
+        }
       }
     }
   }

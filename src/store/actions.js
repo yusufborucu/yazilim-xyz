@@ -21,7 +21,9 @@ export const register = ({ commit, dispatch, state }, data) => {
 export const login = ({ commit, dispatch, state }, data) => {
   Vue.http.post(`${API_URL}/login`, data)
     .then(response => {
-      commit("setToken", response.body.token);
+      commit("setToken", response.body.token);      
+      localStorage.setItem("user_id", response.body.user_id);
+      localStorage.setItem("username", response.body.username);
       localStorage.setItem("token", response.body.token);
     });
 };
