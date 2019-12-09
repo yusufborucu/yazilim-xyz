@@ -1,11 +1,5 @@
 <template>
   <div class="container">
-		<div class="loading" :style="isLoading">
-      <div class="lds-ripple">
-        <div></div>
-        <div></div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-12">
         <h1>Soru Sor</h1>
@@ -55,17 +49,6 @@
 					return false;
 				} else {
 					return true;
-				}
-			},
-			isLoading() {
-				if (this.saveButtonClicked) {
-					return {
-						display: "block"
-					}
-				} else {
-					return {
-						display: "none"
-					}
 				}
 			}
 		},

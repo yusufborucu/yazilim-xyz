@@ -32,7 +32,9 @@
 				  </div>
 				</div>
 				<div class="text-center">
-					<button class="btn btn-primary" onclick="location.href='questions.html';">Tümünü Gör</button>
+					<router-link to="#" tag="button" class="btn btn-primary">
+						Tümünü Gör
+					</router-link>
 				</div>
 			</div>
 			<div class="col-md-8" v-else>
@@ -63,7 +65,9 @@
 					  </li>
 					</ul>
 					<div class="text-center mt-2">
-						<button class="btn btn-primary" onclick="location.href='top-rateds.html';">Tümünü Gör</button>
+						<router-link to="#" tag="button" class="btn btn-primary">
+							Tümünü Gör
+						</router-link>
 					</div>
 				</div>
 				<div class="popular-tags">
@@ -83,7 +87,9 @@
 					  </li>
 					</ul>
 					<div class="text-center mt-2">
-						<button class="btn btn-primary" onclick="location.href='popular-tags.html';">Tümünü Gör</button>
+						<router-link to="#" tag="button" class="btn btn-primary">
+							Tümünü Gör
+						</router-link>
 					</div>
 				</div>
 			</div>
@@ -94,7 +100,7 @@
 <script>
 	import { mapGetters } from "vuex";
 	import { API_URL } from "../../config/env";
-	
+
 	export default {
 		data() {
 			return {
@@ -103,7 +109,7 @@
 		},
 		created() {
 			this.$store.dispatch("last_questions");
-			this.api_url = API_URL;
+			this.api_url = API_URL;			
 		},
 		computed: {
 			...mapGetters(["getQuestions"])

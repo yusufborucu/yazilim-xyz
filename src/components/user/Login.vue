@@ -19,7 +19,7 @@
 				  </div>
 				  <br><br>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success">Giriş Yap</button>
+				  	<button type="submit" class="btn btn-success" :disabled="saveEnabled">Giriş Yap</button>
 				  </div>
 				</form>
 			</div>
@@ -32,17 +32,23 @@
 		data() {
 			return {
 				user: {
-					email: null,
-					password: null
+					email: "",
+					password: ""
+				}
+			}
+		},
+		computed: {
+			saveEnabled() {
+				if (this.user.email.length > 0 && this.user.password.length > 0) {
+					return false;
+				} else {
+					return true;
 				}
 			}
 		},
 		methods: {
 			onSubmit() {
-				this.$store.dispatch("login", { ...this.user })
-					.then(response => {
-						this.$router.push("/");
-					});
+				this.$store.dispatch("login", { ...this.user });
 			}
 		}
 	}

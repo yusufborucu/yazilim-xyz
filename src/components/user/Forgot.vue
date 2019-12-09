@@ -10,7 +10,7 @@
 				  </div>
 				  <br><br>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success">Parola Sıfırla</button>
+				  	<button type="submit" class="btn btn-success" :disabled="saveEnabled">Parola Sıfırla</button>
 				  </div>
 				</form>
 			</div>
@@ -23,16 +23,22 @@
 		data() {
 			return {
 				user: {
-					email: null
+					email: ""
+				}
+			}
+		},
+		computed: {
+			saveEnabled() {
+				if (this.user.email.length > 0) {
+					return false;
+				} else {
+					return true;
 				}
 			}
 		},
 		methods: {
 			onSubmit() {
-				this.$store.dispatch("forgot", { ...this.user })
-					.then(response => {
-						this.$router.push("/");
-					});
+				this.$store.dispatch("forgot", { ...this.user });
 			}
 		}
 	}

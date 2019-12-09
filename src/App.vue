@@ -1,9 +1,16 @@
 <template>
   <div>
+    <div class="loading" :style="isLoading">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <app-header></app-header>
     <router-view></router-view>
     <br/><br/>
     <app-footer></app-footer>
+    <notifications group="app" position="top center" />
   </div>
 </template>
 
@@ -18,6 +25,19 @@
     },
     created() {
       this.$store.dispatch("initAuth");
+    },
+    computed: {
+      isLoading() {
+				if (this.$store.getters.getLoading) {
+					return {
+						display: "block"
+					}
+				} else {
+					return {
+						display: "none"
+					}
+				}
+			}
     }
   }
 </script>

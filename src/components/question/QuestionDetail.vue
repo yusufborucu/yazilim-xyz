@@ -49,7 +49,7 @@
             <br/>
             <span class="date">{{ answer.date }}</span>
           </div>   
-          <div v-if="answer.user_id != user_id">
+          <div v-if="user_id != null && answer.user_id != user_id">
             <button class="vote" :class="successButton(answer)" @click="vote(answer.id, true)"><i class="fas fa-check"></i></button>
             <span class="vote-count">{{ answer.score }}</span>
             <button class="vote" :class="dangerButton(answer)" @click="vote(answer.id, false)"><i class="fas fa-times"></i></button>

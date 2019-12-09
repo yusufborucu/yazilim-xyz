@@ -49,7 +49,7 @@
 				this.$store.dispatch("logout");
 			},
 			onSubmit() {
-				alert('Ara...');
+				this.$router.push('/search-result');
 			}
 		},
 		computed: {
@@ -65,7 +65,10 @@
 				}
 			},
 			username() {
-				return localStorage.getItem("username");
+				if (this.$store.getters.getUsername != "")
+					return this.$store.getters.getUsername;
+				else
+					return localStorage.getItem("username");
 			}
 		}
 	}

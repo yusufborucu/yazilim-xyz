@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 // general
 import Home from "./components/general/Home";
+import SearchResult from "./components/general/SearchResult";
 
 // user
 import Register from "./components/user/Register";
@@ -19,6 +20,7 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: "/", component: Home },
+    { path: "/search-result", component: SearchResult },
     { path: "/register", component: Register },
     { path: "/login", component: Login },
     { path: "/forgot", component: Forgot },

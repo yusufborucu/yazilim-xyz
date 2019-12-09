@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-md-12">
         <h4>Hakkında</h4>
-        <p v-if="getUser.about == null">Henüz hakkında yazınız yok. Profil Düzenle butonuna basarak hakkında yazınızı girebilirsiniz.</p>
+        <p v-if="getUser.about == null || getUser.about == 'null'">Henüz hakkında yazınız yok. Profil Düzenle butonuna basarak hakkında yazınızı girebilirsiniz.</p>
         <p v-else>{{ getUser.about }}</p>
       </div>
     </div>
@@ -93,8 +93,7 @@
       return {
         api_url: "",
         image: null,
-        editAbout: "",
-        fileSelected: false
+        editAbout: ""
       }
     },
     created() {
@@ -115,7 +114,7 @@
         get() {
           if (this.image != null) {
             return URL.createObjectURL(this.image);
-          } else if (!this.fileSelected) {
+          } else if (this.getUser.image == null) {
             return null;
           } else {
             return this.api_url + this.getUser.image;
@@ -128,7 +127,6 @@
     },
     methods: {
       onFileSelected(e) {
-        this.fileSelected = true;
         this.image = e.target.files[0];
       },
       onSubmit() {

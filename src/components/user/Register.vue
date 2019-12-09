@@ -22,7 +22,7 @@
 				  </div>
 				  <br><br>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success">Kayıt Ol</button>
+				  	<button type="submit" class="btn btn-success" :disabled="saveEnabled">Kayıt Ol</button>
 				  </div>
 				</form>
 			</div>
@@ -35,19 +35,29 @@
 		data() {
 			return {
 				user: {
-					username: null,
-					email: null,
-					password: null,
-					c_password: null
+					username: "",
+					email: "",
+					password: "",
+					c_password: ""
+				}
+			}
+		},
+		computed: {
+			saveEnabled() {
+				if (this.user.username.length > 0 && this.user.email.length > 0 && this.user.password.length > 0 && this.user.c_password.length > 0) {
+					return false;
+				} else {
+					return true;
 				}
 			}
 		},
 		methods: {
 			onSubmit() {
-				this.$store.dispatch("register", { ...this.user })
-					.then(response => {
-						this.$router.push("/login");
-					});
+				if (this.user.password != this.user.c_password) {
+					alert('Girdiğiniz parolalar eşleşmiyor.');
+				} else {
+					this.$store.dispatch("register", { ...this.user });
+				}
 			}
 		}
 	}
