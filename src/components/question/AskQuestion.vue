@@ -6,19 +6,23 @@
         <form @submit.prevent="onSubmit">
 				  <div class="form-group">
 				    <label for="title">Başlık</label>
-				    <input v-model="question.title" type="text" class="form-control" id="title" placeholder="Sorunun başlığını giriniz" maxlength="65">
+						<input @blur="$v.question.title.$touch()" v-model="question.title" type="text" class="form-control" :class="{'is-invalid': $v.question.title.$error}" id="title" placeholder="Sorunun başlığını giriniz">						
+						<small v-if="!$v.question.title.required" class="form-text text-danger">Bu alan zorunludur.</small>
+						<small v-if="!$v.question.title.maxLength" class="form-text text-danger">Lütfen en çok {{ $v.question.title.$params.maxLength.max }} karakter giriniz.</small>
 				  </div>
 				  <div class="form-group">
 				    <label for="description">Açıklama</label>
 						<vue-editor v-model="question.description" id="description"></vue-editor>
+						<small v-if="!$v.question.description.required" class="form-text text-danger">Bu alan zorunludur.</small>
 				  </div>
 				  <div class="form-group">
-				    <label for="description">Etiketler</label>
-				    <input v-model="question.tags" type="text" class="form-control" id="tags" placeholder="Sorunun etiketlerini virgülle ayırarak giriniz">
+				    <label for="tags">Etiketler</label>
+				    <input @blur="$v.question.tags.$touch()" v-model="question.tags" type="text" class="form-control" :class="{'is-invalid': $v.question.tags.$error}" id="tags" placeholder="Sorunun etiketlerini virgülle ayırarak giriniz">
+						<small v-if="!$v.question.tags.required" class="form-text text-danger">Bu alan zorunludur.</small>
 				  </div>
 				  <br><br>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success" :disabled="saveEnabled">Soru Sor</button>
+				  	<button type="submit" class="btn btn-success" :disabled="$v.$invalid">Soru Sor</button>
 				  </div>
 				</form>
       </div>
@@ -28,6 +32,7 @@
 
 <script>
 	import { VueEditor } from "vue2-editor";
+	import { required, maxLength } from "vuelidate/lib/validators";
 
 	export default {
 		components: {
@@ -43,12 +48,17 @@
 				saveButtonClicked: false
 			}
 		},
-		computed: {
-			saveEnabled() {
-				if (this.question.title.length > 0 && this.question.description.length > 0 && this.question.tags.length > 0) {
-					return false;
-				} else {
-					return true;
+		validations: {
+			question: {
+				title: {
+					required,
+					maxLength: maxLength(65)
+				},
+				description: {
+					required
+				},
+				tags: {
+					required
 				}
 			}
 		},

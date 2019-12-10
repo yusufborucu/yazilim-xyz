@@ -66,9 +66,10 @@
         <form @submit.prevent="onSubmit">
 				  <div class="form-group">
 						<vue-editor v-model="answer"></vue-editor>
+            <small v-if="!$v.answer.required" class="form-text text-danger">Bu alan zorunludur.</small>
 				  </div>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success" :disabled="saveEnabled">Cevap Yaz</button>
+				  	<button type="submit" class="btn btn-success" :disabled="$v.$invalid">Cevap Yaz</button>
 				  </div>
 				</form>
       </div>
@@ -80,6 +81,7 @@
   import { mapGetters } from "vuex";
   import { API_URL } from "../../config/env";
   import { VueEditor } from "vue2-editor";
+  import { required } from "vuelidate/lib/validators";
   
   export default {
     components: {
@@ -92,19 +94,17 @@
         saveButtonClicked: false
       }
     },
+    validations: {
+			answer: {
+        required
+      }
+		},
     created() {
       this.api_url = API_URL;
       this.$store.dispatch("question_detail", { id: this.$route.params.id });
     },
     computed: {
       ...mapGetters(["getQuestion"]),
-      saveEnabled() {
-				if (this.answer.length > 0) {
-					return false;
-				} else {
-					return true;
-				}
-      },
       user_id() {
         return localStorage.getItem("user_id");
       }

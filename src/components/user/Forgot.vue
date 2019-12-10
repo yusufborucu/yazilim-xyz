@@ -6,11 +6,13 @@
 				<form @submit.prevent="onSubmit" class="login-form">
 				  <div class="form-group">
 				    <label for="email">E-posta Adresi</label>
-				    <input v-model="user.email" type="email" class="form-control" id="email" placeholder="E-posta adresinizi giriniz">
+						<input @blur="$v.user.email.$touch()" v-model="user.email" type="email" class="form-control" :class="{'is-invalid': $v.user.email.$error}" id="email" placeholder="E-posta adresinizi giriniz">
+						<small v-if="!$v.user.email.required" class="form-text text-danger">Bu alan zorunludur.</small>
+						<small v-if="!$v.user.email.email" class="form-text text-danger">Lütfen geçerli bir e-posta adresi giriniz.</small>
 				  </div>
 				  <br><br>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success" :disabled="saveEnabled">Parola Sıfırla</button>
+				  	<button type="submit" class="btn btn-success" :disabled="$v.$invalid">Parola Sıfırla</button>
 				  </div>
 				</form>
 			</div>
@@ -19,6 +21,8 @@
 </template>
 
 <script>
+	import { required, email } from "vuelidate/lib/validators";
+
 	export default {
 		data() {
 			return {
@@ -27,12 +31,11 @@
 				}
 			}
 		},
-		computed: {
-			saveEnabled() {
-				if (this.user.email.length > 0) {
-					return false;
-				} else {
-					return true;
+		validations: {
+			user: {
+				email: {
+					required,
+					email
 				}
 			}
 		},

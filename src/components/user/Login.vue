@@ -6,11 +6,14 @@
 				<form @submit.prevent="onSubmit" class="login-form">
 				  <div class="form-group">
 				    <label for="email">E-posta Adresi</label>
-				    <input v-model="user.email" type="email" class="form-control" id="email" placeholder="E-posta adresinizi giriniz">
+						<input @blur="$v.user.email.$touch()" v-model="user.email" type="email" class="form-control" :class="{'is-invalid': $v.user.email.$error}" id="email" placeholder="E-posta adresinizi giriniz">
+						<small v-if="!$v.user.email.required" class="form-text text-danger">Bu alan zorunludur.</small>
+						<small v-if="!$v.user.email.email" class="form-text text-danger">Lütfen geçerli bir e-posta adresi giriniz.</small>
 				  </div>
 				  <div class="form-group">
 				    <label for="password">Parola</label>
-				    <input v-model="user.password" type="password" class="form-control" id="password" placeholder="Parolanızı giriniz">
+						<input @blur="$v.user.password.$touch()" v-model="user.password" type="password" class="form-control" :class="{'is-invalid': $v.user.password.$error}" id="password" placeholder="Parolanızı giriniz">
+						<small v-if="!$v.user.password.required" class="form-text text-danger">Bu alan zorunludur.</small>
 				  </div>
 				  <div class="forgot-password">
 						<router-link to="/forgot" tag="a">
@@ -19,7 +22,7 @@
 				  </div>
 				  <br><br>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success" :disabled="saveEnabled">Giriş Yap</button>
+				  	<button type="submit" class="btn btn-success" :disabled="$v.$invalid">Giriş Yap</button>
 				  </div>
 				</form>
 			</div>
@@ -28,6 +31,8 @@
 </template>
 
 <script>
+	import { required, email } from "vuelidate/lib/validators";
+
 	export default {
 		data() {
 			return {
@@ -37,12 +42,14 @@
 				}
 			}
 		},
-		computed: {
-			saveEnabled() {
-				if (this.user.email.length > 0 && this.user.password.length > 0) {
-					return false;
-				} else {
-					return true;
+		validations: {
+			user: {
+				email: {
+					required,
+					email
+				},
+				password: {
+					required
 				}
 			}
 		},

@@ -4,11 +4,13 @@ import { router } from "./router";
 import { store } from "./store/store";
 import VueResource from "vue-resource";
 import Notifications from 'vue-notification';
+import Vuelidate from 'vuelidate';
 
 Vue.use(VueResource);
 Vue.use(Notifications);
+Vue.use(Vuelidate);
 
-Vue.http.interceptors.push((request, next) => {
+Vue.http.interceptors.push((request, next) => {  
   // token varsa header a ekle
   let token = localStorage.getItem("token");
   if (token)
