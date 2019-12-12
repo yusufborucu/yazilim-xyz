@@ -20,7 +20,7 @@ Vue.use(VueRouter);
 
 const routes = [
     { path: "/", component: Home },
-    { path: "/search-result", component: SearchResult },
+    { path: "/search-result/:text", component: SearchResult },
     { path: "/register", component: Register },
     { path: "/login", component: Login },
     { path: "/forgot", component: Forgot },

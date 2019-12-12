@@ -473,14 +473,14 @@ svg {
   font-weight: 500;
   display: flex;
   align-items: center;
-  img {
+  svg {
     width: 10px;
     height: 10px;
     margin-left: 4px;
     transition: .2s;
   }
   &:hover {
-    img {
+    svg {
       margin-left: 7px;
     }
   }

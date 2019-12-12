@@ -4,7 +4,8 @@ import { router } from "../../router";
 
 const state = {
   questions: [],
-  question: {}
+  question: {},
+  searchResult: []
 };
 
 const getters = {
@@ -13,6 +14,9 @@ const getters = {
   },
   getQuestion(state) {
     return state.question;
+  },
+  getSearchResult(state) {
+    return state.searchResult;
   }
 };
 
@@ -22,6 +26,9 @@ const mutations = {
   },
   updateQuestion(state, question) {
     state.question = question;
+  },
+  updateSearchResult(state, searchResult) {
+    state.searchResult = searchResult;
   }
 };
 
@@ -56,6 +63,13 @@ const actions = {
     Vue.http.post(`${API_URL}/vote`, data)
       .then(response => {
         dispatch("question_detail", { id: data.question_id });
+      });
+  },
+  search({ commit, dispatch, state }, data) {
+    Vue.http.post(`${API_URL}/search`, data)
+      .then(response => {
+        let data = response.body;
+        commit("updateSearchResult", data);
       });
   }
 };

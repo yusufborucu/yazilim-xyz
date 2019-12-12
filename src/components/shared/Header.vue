@@ -22,7 +22,7 @@
 							</ul>
 							<form @submit.prevent="onSubmit" class="search-content">
 								<div class="form-group fg-icon mb-0">
-									<input type="text" class="form-control" placeholder="Arama yap...">
+									<input v-model="text" type="text" class="form-control" placeholder="Arama yap...">
 									<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 												viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
 										<path d="M508.874,478.708L360.142,329.976c28.21-34.827,45.191-79.103,45.191-127.309c0-111.75-90.917-202.667-202.667-202.667
@@ -65,12 +65,17 @@
 
 <script>
 	export default {
+		data() {
+			return {
+				text: ""
+			}
+		},
 		methods: {
 			logout() {
 				this.$store.dispatch("logout");
 			},
 			onSubmit() {
-				this.$router.push('/search-result');
+				this.$router.push('/search-result/' + this.text);
 			}
 		},
 		computed: {
