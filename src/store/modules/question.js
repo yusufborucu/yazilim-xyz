@@ -6,7 +6,9 @@ const state = {
   questions: [],
   question: {},
   searchResult: [],
-  tagDetail: []
+  tagDetail: [],
+  allBest: [],
+  allTags: []
 };
 
 const getters = {
@@ -21,6 +23,12 @@ const getters = {
   },
   getTagDetail(state) {
     return state.tagDetail;
+  },
+  getAllBest(state) {
+    return state.allBest;
+  },
+  getAllTags(state) {
+    return state.allTags;
   }
 };
 
@@ -36,6 +44,12 @@ const mutations = {
   },
   updateTagDetail(state, tagDetail) {
     state.tagDetail = tagDetail;
+  },
+  updateAllBest(state, allBest) {
+    state.allBest = allBest;
+  },
+  updateAllTags(state, allTags) {
+    state.allTags = allTags;
   }
 };
 
@@ -84,6 +98,20 @@ const actions = {
       .then(response => {
         let data = response.body;
         commit("updateTagDetail", data);
+      });
+  },
+  all_best({ commit, dispatch, state }) {
+    Vue.http.get(`${API_URL}/all_best`)
+      .then(response => {
+        let data = response.body;
+        commit("updateAllBest", data);
+      });
+  },
+  all_tags({ commit, dispatch, state }) {
+    Vue.http.get(`${API_URL}/all_tags`)
+      .then(response => {
+        let data = response.body;
+        commit("updateAllTags", data);
       });
   }
 };

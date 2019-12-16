@@ -4,6 +4,10 @@ import VueRouter from "vue-router";
 // general
 import Home from "./components/general/Home";
 import SearchResult from "./components/general/SearchResult";
+import UserDetail from "./components/general/UserDetail";
+import TagDetail from "./components/general/TagDetail";
+import AllBest from "./components/general/AllBest";
+import AllTags from "./components/general/AllTags";
 
 // user
 import Register from "./components/user/Register";
@@ -11,23 +15,24 @@ import Login from "./components/user/Login";
 import Forgot from "./components/user/Forgot";
 import NewPassword from "./components/user/NewPassword";
 import Profile from "./components/user/Profile";
-import UserDetail from "./components/user/UserDetail";
 
 // question
 import AskQuestion from "./components/question/AskQuestion";
 import QuestionDetail from "./components/question/QuestionDetail";
-import TagDetail from "./components/question/TagDetail";
 
 Vue.use(VueRouter);
 
 const routes = [
     { path: "/", component: Home },
     { path: "/search-result/:text", component: SearchResult },
+    { path: "/user-detail/:id", component: UserDetail },
+    { path: "/tag-detail/:tag", component: TagDetail },
+    { path: "/all-best", component: AllBest },
+    { path: "/all-tags", component: AllTags },
     { path: "/register", component: Register },
     { path: "/login", component: Login },
     { path: "/forgot", component: Forgot },
-    { path: "/new-password/:remember_token", component: NewPassword },
-    { path: "/user-detail/:id", component: UserDetail },
+    { path: "/new-password/:remember_token", component: NewPassword },    
     {
         path: "/profile",
         component: Profile,
@@ -52,8 +57,7 @@ const routes = [
             }
         }
     },    
-    { path: "/question-detail/:id", component: QuestionDetail },
-    { path: "/tag-detail/:tag", component: TagDetail },
+    { path: "/question-detail/:id", component: QuestionDetail },    
     { path: "*", redirect: "/" }
 ];
 
