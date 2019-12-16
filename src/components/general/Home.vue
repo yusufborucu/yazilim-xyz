@@ -60,14 +60,16 @@
 															<ul class="tag-list">
 																<li 
 																	v-bind:key="tag.id"
-																	v-for="tag in question.tags"><a href="#">{{ tag.tag }}</a></li>
+																	v-for="tag in question.tags">
+                                  <router-link :to="{ path: 'tag-detail/' + tag.tag }" tag="a">{{ tag.tag }}</router-link>
+                                </li>
 															</ul>
 														</div>
 														<div class="author-date">
-															<a href="#">
+                              <router-link :to="{ path: 'user-detail/' + question.user.id }" tag="a">															
 																<img :src="question.user.image != null ? api_url + question.user.image : '../../dist/profile.png'" height="16px" width="16px">
 																<span class="username">{{ question.user.username }}</span>
-															</a>
+                              </router-link>
 															<br>
 															<span class="date">{{ question.date }}</span>
 														</div>

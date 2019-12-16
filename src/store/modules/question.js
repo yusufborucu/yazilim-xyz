@@ -5,7 +5,8 @@ import { router } from "../../router";
 const state = {
   questions: [],
   question: {},
-  searchResult: []
+  searchResult: [],
+  tagDetail: []
 };
 
 const getters = {
@@ -17,6 +18,9 @@ const getters = {
   },
   getSearchResult(state) {
     return state.searchResult;
+  },
+  getTagDetail(state) {
+    return state.tagDetail;
   }
 };
 
@@ -29,6 +33,9 @@ const mutations = {
   },
   updateSearchResult(state, searchResult) {
     state.searchResult = searchResult;
+  },
+  updateTagDetail(state, tagDetail) {
+    state.tagDetail = tagDetail;
   }
 };
 
@@ -70,6 +77,13 @@ const actions = {
       .then(response => {
         let data = response.body;
         commit("updateSearchResult", data);
+      });
+  },
+  tag_detail({ commit, dispatch, state }, data) {
+    Vue.http.get(`${API_URL}/tag_detail/` + data.tag)
+      .then(response => {
+        let data = response.body;
+        commit("updateTagDetail", data);
       });
   }
 };

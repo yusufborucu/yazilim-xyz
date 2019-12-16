@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
         token: "",
         username: "",
         user: {},
+        userDetail: {},
         loading: false
     },
     actions,

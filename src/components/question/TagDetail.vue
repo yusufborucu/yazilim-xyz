@@ -31,7 +31,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="d-flex justify-content-between">
-                    <h4 class="section-title mb-0">Arama Sonucu ({{ this.$route.params.text }})</h4>
+                    <h4 class="section-title mb-0">Etiket Detayı ({{ this.$route.params.tag }})</h4>
                     <router-link to="/ask-question" tag="a" class="add-link">
                       <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
@@ -44,7 +44,7 @@
                   <div class="questions">
                     <div 
                       v-bind:key="question.id"
-                      v-for="question in getSearchResult" 
+                      v-for="question in getTagDetail" 
                       class="question">
                       <div class="question-left">
                         <div class="count answer"><span>{{ question.answer_count }}</span><small>cevap</small></div>
@@ -171,11 +171,11 @@
 			}
 		},
 		created() {
-			this.$store.dispatch("search", { text: this.$route.params.text });
+			this.$store.dispatch("tag_detail", { tag: this.$route.params.tag });
 			this.api_url = API_URL;			
 		},
 		computed: {
-			...mapGetters(["getSearchResult"])
+			...mapGetters(["getTagDetail"])
 		}
 	}
 </script>

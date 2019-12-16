@@ -17,3 +17,7 @@ export const setUser = (state, user) => {
 export const setLoading = (state, loading) => {
   state.loading = loading;
 };
+
+export const setUserDetail = (state, userDetail) => {
+  state.userDetail = userDetail;
+};

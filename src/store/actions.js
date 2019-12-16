@@ -72,3 +72,10 @@ export const update_profile = ({ commit, dispatch, state }, data) => {
       
     });
 };
+
+export const user_detail = ({ commit, dispatch, state }, data) => {
+  Vue.http.get(`${API_URL}/user_detail/` + data.id)
+    .then(response => {
+      commit("setUserDetail", response.body);
+    });
+};

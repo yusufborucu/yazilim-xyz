@@ -13,3 +13,7 @@ export const getUser = (state) => {
 export const getLoading = (state) => {
   return state.loading;
 };
+
+export const getUserDetail = (state) => {
+  return state.userDetail;
+};
