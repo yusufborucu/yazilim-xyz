@@ -64,9 +64,23 @@
 		},
 		methods: {
 			onSubmit() {
+				// pre tag'ı olan kısımlar bulunup code tag'ı eklendi (highlightjs için)
+				/*var find = ['<pre class="ql-syntax" spellcheck="false">', '</pre>'];
+				var replace = ['<pre class="ql-syntax" spellcheck="false"><code>', '</code></pre>'];
+				this.question.description = this.replaceArray(this.question.description, find, replace);*/
 				this.saveButtonClicked = true;
 				this.$store.dispatch("ask_question", { ...this.question });
 			}
+			// birden fazla string'i replace etme fonksiyonu
+			/*replaceArray(text, find, replace) {
+				var replaceString = text;
+				var regex; 
+				for (var i = 0; i < find.length; i++) {
+					regex = new RegExp(find[i], "g");
+					replaceString = replaceString.replace(regex, replace[i]);
+				}
+				return replaceString;
+			}*/
 		},
 		beforeRouteLeave(to, from, next) {
 			if ((this.question.title.length > 0 || 

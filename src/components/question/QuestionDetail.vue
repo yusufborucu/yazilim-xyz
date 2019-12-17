@@ -12,6 +12,7 @@
     </div>    
     <div class="row">
       <div class="col-md-8">
+        <!--<p v-highlightjs v-html="getQuestion.description"></p>-->
         <p v-html="getQuestion.description"></p>
       </div>     
     </div>    

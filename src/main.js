@@ -6,6 +6,21 @@ import VueResource from "vue-resource";
 import Notifications from 'vue-notification';
 import Vuelidate from 'vuelidate';
 
+// highlight.js
+/*import hljs from 'highlight.js';
+Vue.directive('highlightjs', {
+  deep: true,
+  bind: function (el, binding) {
+    let targets = el.querySelectorAll('code');
+    targets.forEach((target) => {
+      if (binding.value) {
+        target.innerHTML = binding.value;
+      }
+      hljs.highlightBlock(target);
+    });
+  }
+});*/
+
 Vue.use(VueResource);
 Vue.use(Notifications);
 Vue.use(Vuelidate);
