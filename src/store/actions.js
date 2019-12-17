@@ -30,7 +30,15 @@ export const login = ({ commit, dispatch, state }, data) => {
       localStorage.setItem("user_id", response.body.user_id);
       localStorage.setItem("username", response.body.username);
       localStorage.setItem("token", response.body.token);
-      router.replace("/");
+      if (data.question_id) {
+        let answer_data = {
+          question_id: data.question_id,
+          answer: data.answer
+        };
+        dispatch("reply", answer_data);
+      } else {
+        router.replace("/");
+      }
     });
 };
 

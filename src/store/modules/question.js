@@ -72,6 +72,7 @@ const actions = {
       .then(response => {
         let data = response.body;
         commit("updateQuestion", data);
+        console.log(data);
       });
   },
   reply({ commit, dispatch, state }, data) {

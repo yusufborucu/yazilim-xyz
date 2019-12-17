@@ -74,6 +74,34 @@
 				</form>
       </div>
     </div>
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Giriş Yap</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form @submit.prevent="onLoginModalSubmit" class="login-form">
+            <div class="modal-body">            
+              <div class="form-group">
+                <label for="email">E-posta Adresi</label>
+                <input v-model="user.email" type="email" class="form-control" id="email" placeholder="E-posta adresinizi giriniz">
+              </div>
+              <div class="form-group">
+                <label for="password">Parola</label>
+						    <input v-model="user.password" type="password" class="form-control" id="password" placeholder="Parolanızı giriniz">
+              </div>         
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+              <button type="submit" class="btn btn-success">Giriş Yap</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -91,7 +119,11 @@
       return {
         api_url: "",
         answer: "",
-        saveButtonClicked: false
+        saveButtonClicked: false,
+        user: {
+					email: "",
+          password: ""
+				}
       }
     },
     validations: {
@@ -111,12 +143,26 @@
     },
     methods: {
       onSubmit() {
-        this.saveButtonClicked = true;
-        let data = {
-          question_id: this.$route.params.id,
-          answer: this.answer
-        };
-				this.$store.dispatch("reply", { ...data });
+        if (this.$store.getters.isAuthenticated) {
+          this.saveButtonClicked = true;
+          let data = {
+            question_id: this.$route.params.id,
+            answer: this.answer
+          };
+          this.$store.dispatch("reply", { ...data });
+        } else {
+          $('#loginModal').modal('toggle');
+        }
+      },  
+      onLoginModalSubmit() {
+        this.$store.dispatch("login", { ...this.user, question_id: this.$route.params.id, answer: this.answer })
+          .then(response => {
+            setTimeout(() => {
+              if (this.$store.getters.isAuthenticated) {
+                $('#loginModal').modal('toggle');
+              }
+            }, 2000);            
+          });
       },
       vote(answer_id, status) {
         let data = {
