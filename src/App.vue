@@ -75,6 +75,7 @@
   transform: scale(1.1);
 }
 
+// highlight.js kullanılınca bu kısım (pre) silinecek.
 pre {
   background-color: #343a40;
   color: #fff;
@@ -87,6 +88,43 @@ pre {
 
 .vote-count {
   margin: 10px;
+}
+
+.question-detail-title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  h2 {
+    font-size: 24px;
+  }  
+  .operations {
+    font-size: 13px;
+    a {
+      color: #3b648e;
+      margin: 5px;
+      padding: 5px;
+    }
+  }
+  .infos {
+    font-size: 13px;
+  }
+}
+
+.question-detail-description {
+  font-size: 15px;  
+}
+
+.tags {
+  font-size: 15px;
+}
+
+.author-date {
+  float: right;
+  font-size: 15px;
+  .date {
+    font-size: 13px;
+    float: right;
+  }
 }
 
 :root {

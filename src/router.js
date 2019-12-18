@@ -18,6 +18,7 @@ import Profile from "./components/user/Profile";
 
 // question
 import AskQuestion from "./components/question/AskQuestion";
+import EditQuestion from "./components/question/EditQuestion";
 import QuestionDetail from "./components/question/QuestionDetail";
 
 Vue.use(VueRouter);
@@ -57,6 +58,18 @@ const routes = [
             }
         }
     },    
+    { 
+        path: "/edit-question/:id", 
+        component: EditQuestion, 
+        beforeEnter(to, from, next) { 
+            let token = localStorage.getItem("token");
+            if (token) {
+                next();
+            } else {
+                next("/");
+            }
+        }
+    }, 
     { path: "/question-detail/:id", component: QuestionDetail },    
     { path: "*", redirect: "/" }
 ];

@@ -2,10 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <h2>{{ getQuestion.title }}</h2>
-        <div class="infos">
-          <span class="border p-2">{{ getQuestion.answer_count }} cevap</span>
-          <span class="border p-2">{{ getQuestion.reading }} okunma</span>
+        <div class="question-detail-title">
+          <h2>{{ getQuestion.title }}</h2>
+          <div class="operations" v-if="user_id == getQuestion.user_id">
+            <router-link :to="{ path: '/edit-question/' + getQuestion.id }" tag="a">Düzenle</router-link>
+            <router-link :to="{ path: '/delete-question/' + getQuestion.id }" tag="a">Sil</router-link>
+          </div>
+          <div class="infos">
+            <span class="border p-2">{{ getQuestion.answer_count }} cevap</span>
+            <span class="border p-2">{{ getQuestion.reading }} okunma</span>
+          </div>
         </div>
         <hr/>
       </div>
@@ -13,7 +19,7 @@
     <div class="row">
       <div class="col-md-8">
         <!--<p v-highlightjs v-html="getQuestion.description"></p>-->
-        <p v-html="getQuestion.description"></p>
+        <p class="question-detail-description" v-html="getQuestion.description"></p>
       </div>     
     </div>    
     <div class="row">

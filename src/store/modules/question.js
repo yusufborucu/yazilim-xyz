@@ -5,6 +5,7 @@ import { router } from "../../router";
 const state = {
   questions: [],
   question: {},
+  editQuestion: {},
   searchResult: [],
   tagDetail: [],
   allBest: [],
@@ -17,6 +18,9 @@ const getters = {
   },
   getQuestion(state) {
     return state.question;
+  },
+  getEditQuestion(state) {
+    return state.editQuestion;
   },
   getSearchResult(state) {
     return state.searchResult;
@@ -39,6 +43,9 @@ const mutations = {
   updateQuestion(state, question) {
     state.question = question;
   },
+  updateEditQuestion(state, editQuestion) {
+    state.editQuestion = editQuestion;
+  },
   updateSearchResult(state, searchResult) {
     state.searchResult = searchResult;
   },
@@ -58,6 +65,19 @@ const actions = {
     Vue.http.post(`${API_URL}/question`, data)
       .then(response => {
         router.replace("/");
+      });
+  },
+  show_question({ commit, dispatch, state }, data) {
+    Vue.http.get(`${API_URL}/question/` + data.id)
+      .then(response => {
+        let data = response.body;
+        commit("updateEditQuestion", data);
+      });
+  },
+  edit_question({ commit, dispatch, state }, data) {
+    Vue.http.put(`${API_URL}/question/` + data.id, data)
+      .then(response => {
+        commit("updateEditQuestion", data);
       });
   },
   last_questions({ commit, dispatch, state }) {
