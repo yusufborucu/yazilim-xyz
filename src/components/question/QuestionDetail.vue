@@ -6,7 +6,7 @@
           <h2>{{ getQuestion.title }}</h2>
           <div class="operations" v-if="user_id == getQuestion.user_id">
             <router-link :to="{ path: '/edit-question/' + getQuestion.id }" tag="a">Düzenle</router-link>
-            <router-link :to="{ path: '/delete-question/' + getQuestion.id }" tag="a">Sil</router-link>
+            <a href="#" @click="remove(getQuestion.id)">Sil</a>
           </div>
           <div class="infos">
             <span class="border p-2">{{ getQuestion.answer_count }} cevap</span>
@@ -206,6 +206,11 @@
             'btn btn-outline-danger': exist[0].status == 1
           }
         }
+      },
+      remove(id) {
+        if (confirm("Bu soruyu silmek istediğinize emin misiniz?")) {
+          this.$store.dispatch("remove_question", { id });
+				} 
       }
     }
   }

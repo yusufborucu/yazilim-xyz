@@ -80,6 +80,12 @@ const actions = {
         commit("updateEditQuestion", data);
       });
   },
+  remove_question({ commit, dispatch, state }, data) {
+    Vue.http.delete(`${API_URL}/question/` + data.id)
+      .then(response => {
+        router.replace("/");
+      });
+  },
   last_questions({ commit, dispatch, state }) {
     Vue.http.get(`${API_URL}/last_questions`)
       .then(response => {
@@ -92,7 +98,6 @@ const actions = {
       .then(response => {
         let data = response.body;
         commit("updateQuestion", data);
-        console.log(data);
       });
   },
   reply({ commit, dispatch, state }, data) {
