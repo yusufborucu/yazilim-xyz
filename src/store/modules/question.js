@@ -106,6 +106,18 @@ const actions = {
         dispatch("question_detail", { id: data.question_id });
       });
   },
+  edit_reply({ commit, dispatch, state }, data) {
+    Vue.http.put(`${API_URL}/answer/` + data.id, data)
+      .then(response => {
+        dispatch("question_detail", { id: data.question_id });
+      });
+  },
+  remove_answer({ commit, dispatch, state }, data) {
+    Vue.http.delete(`${API_URL}/answer/` + data.id)
+      .then(response => {
+        dispatch("question_detail", { id: data.question_id });
+      });
+  },
   vote({ commit, dispatch, state }, data) {
     Vue.http.post(`${API_URL}/vote`, data)
       .then(response => {

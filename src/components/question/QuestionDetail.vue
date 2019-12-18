@@ -6,7 +6,7 @@
           <h2>{{ getQuestion.title }}</h2>
           <div class="operations" v-if="user_id == getQuestion.user_id">
             <router-link :to="{ path: '/edit-question/' + getQuestion.id }" tag="a">Düzenle</router-link>
-            <a href="#" @click="remove(getQuestion.id)">Sil</a>
+            <a href="#" @click="removeQuestion(getQuestion.id)">Sil</a>
           </div>
           <div class="infos">
             <span class="border p-2">{{ getQuestion.answer_count }} cevap</span>
@@ -62,6 +62,10 @@
             <button class="vote" :class="dangerButton(answer)" @click="vote(answer.id, false)"><i class="fas fa-times"></i></button>
           </div>
           <div style="min-height: 38px;" v-else>
+          </div>
+          <div class="answer-operations" v-if="user_id == answer.user_id">
+            <a href="#" @click="editAnswer(answer.answer, answer.id)">Düzenle</a>
+            <a href="#" @click="removeAnswer(answer.id)">Sil</a>
           </div>
           <hr/>
         </div>                        
@@ -127,6 +131,8 @@
         api_url: "",
         answer: "",
         saveButtonClicked: false,
+        editButtonClicked: false,
+        editAnswerId: 0,
         user: {
 					email: "",
           password: ""
@@ -151,12 +157,21 @@
     methods: {
       onSubmit() {
         if (this.$store.getters.isAuthenticated) {
-          this.saveButtonClicked = true;
-          let data = {
-            question_id: this.$route.params.id,
-            answer: this.answer
-          };
-          this.$store.dispatch("reply", { ...data });
+          if (this.editButtonClicked) {
+            let data = {
+              id: this.editAnswerId,
+              question_id: this.$route.params.id,
+              answer: this.answer
+            };
+            this.$store.dispatch("edit_reply", { ...data });
+          } else {
+            this.saveButtonClicked = true;
+            let data = {              
+              question_id: this.$route.params.id,
+              answer: this.answer
+            };
+            this.$store.dispatch("reply", { ...data });
+          }
         } else {
           $('#loginModal').modal('toggle');
         }
@@ -207,9 +222,19 @@
           }
         }
       },
-      remove(id) {
+      removeQuestion(id) {
         if (confirm("Bu soruyu silmek istediğinize emin misiniz?")) {
           this.$store.dispatch("remove_question", { id });
+				} 
+      },
+      editAnswer(answer, id) {
+        this.editButtonClicked = true;
+        this.answer = answer;
+        this.editAnswerId = id;
+      },
+      removeAnswer(id) {
+        if (confirm("Bu cevabı silmek istediğinize emin misiniz?")) {
+          this.$store.dispatch("remove_answer", { id, question_id: this.$route.params.id });
 				} 
       }
     }

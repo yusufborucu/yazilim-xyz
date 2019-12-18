@@ -110,6 +110,15 @@ pre {
   }
 }
 
+.answer-operations {
+  font-size: 13px;
+  a {
+    color: #3b648e;
+    margin: 5px;
+    padding: 5px;
+  }
+}
+
 .question-detail-description {
   font-size: 15px;  
 }
