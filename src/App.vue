@@ -57,6 +57,33 @@
   background: white;
 }
 
+.tag-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    .tag {
+      background-color: var(--color-main);
+      padding: 10px;
+      color: #fff;
+      cursor: default;
+      font-size: 14px;
+      margin-right: 10px;
+      .tag-close {
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+    input {
+      outline: none;
+      height: 30px;
+      width: 100px;
+    }
+    .error {
+      font-size: 12px;
+      color: var(--color-red);
+      margin-top: 5px;
+    }
+  }
+
 .username {
   font-size: 20px;
 }

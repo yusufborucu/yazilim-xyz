@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <h1>Soruyu Düzenle</h1>
-        <form @submit.prevent="onSubmit">
+        <form>
 				  <div class="form-group">
 				    <label for="title">Başlık</label>
 						<input @blur="$v.question.title.$touch()" v-model="question.title" type="text" class="form-control" :class="{'is-invalid': $v.question.title.$error}" id="title" placeholder="Sorunun başlığını giriniz">						
@@ -16,13 +16,23 @@
 						<small v-if="!$v.question.description.required" class="form-text text-danger">Bu alan zorunludur.</small>
 				  </div>
 				  <div class="form-group">
-				    <label for="tags">Etiketler</label>
-				    <input @blur="$v.question.tags.$touch()" v-model="question.tags" type="text" class="form-control" :class="{'is-invalid': $v.question.tags.$error}" id="tags" placeholder="Sorunun etiketlerini virgülle ayırarak giriniz">
+						<label>Etiketler</label>
+						<div class="tag-container">
+							<span class="tag" v-for="(tag, index) in question.tags" v-bind:key="tag.id">
+								<span class="content">{{ tag }}</span>
+								<span class="tag-close" @click="removeOneTag(index)">X</span>
+							</span>
+							<input 
+								type="text" 
+								@keydown.enter="addTag"
+								@keydown.backspace="removeTag" />
+							<div class="error" v-if="error">Bu etiket daha önceden eklenmiş.</div>
+						</div>
 						<small v-if="!$v.question.tags.required" class="form-text text-danger">Bu alan zorunludur.</small>
 				  </div>
 				  <br><br>
 				  <div class="text-center">
-				  	<button type="submit" class="btn btn-success" :disabled="$v.$invalid">Soruyu Düzenle</button>
+				  	<button type="button" class="btn btn-success" @click="onSubmit" :disabled="$v.$invalid">Soruyu Düzenle</button>
 				  </div>
 				</form>
       </div>
@@ -47,7 +57,8 @@
 					description: this.$store.getters.getEditQuestion.description,
 					tags: this.$store.getters.getEditQuestion.tags
 				},
-				saveButtonClicked: false
+				saveButtonClicked: false,
+				error: false
 			}
 		},
 		validations: {
@@ -79,7 +90,7 @@
 				this.question.description = this.replaceArray(this.question.description, find, replace);*/
 				this.saveButtonClicked = true;
 				this.$store.dispatch("edit_question", { id: this.$route.params.id, ...this.question });
-			}
+			},
 			// birden fazla string'i replace etme fonksiyonu
 			/*replaceArray(text, find, replace) {
 				var replaceString = text;
@@ -90,6 +101,35 @@
 				}
 				return replaceString;
 			}*/
+			addTag(event) {
+        let text = event.target;
+        let matchedTag = false;
+
+        if (text.value.length > 0) {
+          this.question.tags.forEach(tag => {
+            if (tag.toLowerCase() === text.value.toLowerCase()) {
+              matchedTag = true;
+            } 
+          });
+          if (!matchedTag) {
+            this.question.tags.push(text.value);
+            text.value = ""; 
+          } else {
+            this.error = true;
+            setTimeout(() => {
+              this.error = false;
+            }, 2000);
+          }
+        }
+      },
+      removeTag(event) {
+        if (event.target.value.length <= 0) {
+          this.question.tags.splice(this.question.tags.length - 1, 1);
+        }
+      },
+      removeOneTag(index) {
+        this.question.tags.splice(index, 1);
+      }
 		},
 		beforeRouteLeave(to, from, next) {
 			if ((this.question.title.length > 0 || 
