@@ -41,6 +41,7 @@
 </template>
 
 <script>
+	import Vue from "vue";
   import { API_URL } from "../../config/env";
   import { mapGetters } from "vuex";
 	import { VueEditor } from "vue2-editor";
@@ -53,9 +54,9 @@
 		data() {
 			return {
 				question: {
-					title: this.$store.getters.getEditQuestion.title,
-					description: this.$store.getters.getEditQuestion.description,
-					tags: this.$store.getters.getEditQuestion.tags
+					title: "",
+					description: "",
+					tags: ""
 				},
 				saveButtonClicked: false,
 				error: false
@@ -76,11 +77,10 @@
 			}
     },
     created() {
-      this.api_url = API_URL;
-      this.$store.dispatch("show_question", { id: this.$route.params.id });
-    },
-    computed: {
-      ...mapGetters(["getEditQuestion"])
+			Vue.http.get(`${API_URL}/question/` + this.$route.params.id)
+				.then(response => {
+					this.question = response.body;
+				});
     },
 		methods: {
 			onSubmit() {

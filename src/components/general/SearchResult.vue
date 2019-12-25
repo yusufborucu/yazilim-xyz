@@ -4,29 +4,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="content-cols">
-            <div class="left-content">
-              <aside class="sidebar sidebar-tags">
-                <h4 class="sidebar-title">Son Etiketler</h4>
-                <ul class="tag-list">
-                  <li><a href="#">angular</a><small class="count">1903</small></li>
-                  <li><a href="#">laravel</a><small class="count">1597</small></li>
-                  <li><a href="#">vue</a><small class="count">1387</small></li>
-                  <li><a href="#">css</a><small class="count">974</small></li>
-                  <li><a href="#">nodejs</a><small class="count">973</small></li>
-                  <li><a href="#">typescript</a><small class="count">476</small></li>
-                  <li><a href="#">c#</a><small class="count">289</small></li>
-                </ul>
-                <a href="#" class="more-link">
-                  Tümünü gör
-                  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                       viewBox="0 0 185.343 185.343" style="enable-background:new 0 0 185.343 185.343;" xml:space="preserve">
-                    <path style="fill:#3b648e;" d="M51.707,185.343c-2.741,0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981,0-15.175
-                    l74.352-74.347L44.114,18.32c-4.194-4.194-4.194-10.987,0-15.175c4.194-4.194,10.987-4.194,15.18,0l81.934,81.934
-                    c4.194,4.194,4.194,10.987,0,15.175l-81.934,81.939C57.201,184.293,54.454,185.343,51.707,185.343z"/>
-                  </svg>
-                </a>
-              </aside>
-            </div>
+            <app-left-sidebar></app-left-sidebar>
             <div class="center-content">
               <div class="row">
                 <div class="col-md-12">
@@ -91,68 +69,7 @@
                 </div>
               </div>
             </div>
-            <div class="right-content">
-              <div class="row">
-                <div class="col-md-12">
-                  <aside class="sidebar mb-5">
-                    <h4 class="sidebar-title">En İyiler</h4>
-                    <ul class="user-list">
-                      <li>
-                        <a href="#">
-                          <img class="avatar" src="src/assets/svg/avatar.svg" width="16px" height="16px">
-                          <span class="username">yusufborucu</span>
-                          <span class="count">21</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img class="avatar" src="src/assets/svg/avatar.svg" width="16px" height="16px">
-                          <span class="username">xkobacik</span>
-                          <span class="count">16</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img class="avatar" src="https://avatars2.githubusercontent.com/u/16652871?s=460&v=4" width="16px" height="16px">
-                          <span class="username">MehmetSert</span>
-                          <span class="count">11</span>
-                        </a>
-                      </li>
-                    </ul>
-                    <a href="#" class="more-link">
-                      Tümünü gör
-                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                           viewBox="0 0 185.343 185.343" style="enable-background:new 0 0 185.343 185.343;" xml:space="preserve">
-                        <path style="fill:#3b648e;" d="M51.707,185.343c-2.741,0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981,0-15.175
-                        l74.352-74.347L44.114,18.32c-4.194-4.194-4.194-10.987,0-15.175c4.194-4.194,10.987-4.194,15.18,0l81.934,81.934
-                        c4.194,4.194,4.194,10.987,0,15.175l-81.934,81.939C57.201,184.293,54.454,185.343,51.707,185.343z"/>
-                      </svg>
-                    </a>
-                  </aside>
-                  <aside class="sidebar sidebar-tags">
-                    <h4 class="sidebar-title">Popüler Etiketler</h4>
-                    <ul class="tag-list">
-                      <li><a href="#">angular</a><small class="count">1903</small></li>
-                      <li><a href="#">laravel</a><small class="count">1597</small></li>
-                      <li><a href="#">vue</a><small class="count">1387</small></li>
-                      <li><a href="#">css</a><small class="count">974</small></li>
-                      <li><a href="#">nodejs</a><small class="count">973</small></li>
-                      <li><a href="#">typescript</a><small class="count">476</small></li>
-                      <li><a href="#">c#</a><small class="count">289</small></li>
-                    </ul>
-                    <a href="#" class="more-link">
-                      Tümünü gör
-                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                           viewBox="0 0 185.343 185.343" style="enable-background:new 0 0 185.343 185.343;" xml:space="preserve">
-                        <path style="fill:#3b648e;" d="M51.707,185.343c-2.741,0-5.493-1.044-7.593-3.149c-4.194-4.194-4.194-10.981,0-15.175
-                        l74.352-74.347L44.114,18.32c-4.194-4.194-4.194-10.987,0-15.175c4.194-4.194,10.987-4.194,15.18,0l81.934,81.934
-                        c4.194,4.194,4.194,10.987,0,15.175l-81.934,81.939C57.201,184.293,54.454,185.343,51.707,185.343z"/>
-                      </svg>
-                    </a>
-                  </aside>
-                </div>
-              </div>
-            </div>
+            <app-right-sidebar></app-right-sidebar>
           </div>
         </div>
       </div>
@@ -162,9 +79,15 @@
 
 <script>
 	import { mapGetters } from "vuex";
-	import { API_URL } from "../../config/env";
+  import { API_URL } from "../../config/env";
+  import LeftSidebar from "../shared/LeftSidebar";
+  import RightSidebar from "../shared/RightSidebar";
 
 	export default {
+    components: {
+      appLeftSidebar: LeftSidebar,
+      appRightSidebar: RightSidebar
+    },
 		data() {
 			return {
 				api_url: ""

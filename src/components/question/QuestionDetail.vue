@@ -64,7 +64,7 @@
           <div style="min-height: 38px;" v-else>
           </div>
           <div class="answer-operations" v-if="user_id == answer.user_id">
-            <a href="#" @click="editAnswer(answer.answer, answer.id)">Düzenle</a>
+            <a @click="editAnswer(answer.answer, answer.id)">Düzenle</a>
             <a href="#" @click="removeAnswer(answer.id)">Sil</a>
           </div>
           <hr/>

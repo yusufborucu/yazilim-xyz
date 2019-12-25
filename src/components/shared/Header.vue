@@ -5,7 +5,7 @@
 				<div class="col-md-12">
 					<nav class="navbar navbar-expand-lg navbar-light main-menu">
 						<router-link to="/" tag="a" class="navbar-brand">
-							<img src="src/assets/svg/book.svg" width="26px" height="26px">
+							<img src="/src/assets/svg/book.svg" width="26px" height="26px">
 							<strong>yazilim</strong>xyz
 						</router-link>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,8 @@
 				this.$store.dispatch("logout");
 			},
 			onSubmit() {
-				this.$router.push('/search-result/' + this.text);
+				const path = `/search-result/${this.text}`;
+				if (this.$route.path !== path) this.$router.push(path);
 			}
 		},
 		computed: {
