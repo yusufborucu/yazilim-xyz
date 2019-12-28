@@ -102,13 +102,6 @@
   transform: scale(1.1);
 }
 
-// highlight.js kullanılınca bu kısım (pre) silinecek.
-pre {
-  background-color: #343a40;
-  color: #fff;
-  padding: 10px;
-}
-
 .vote {
   min-width: 50px;
 }
@@ -145,10 +138,6 @@ pre {
     margin: 5px;
     padding: 5px;
   }
-}
-
-.question-detail-description {
-  font-size: 15px;  
 }
 
 .tags {

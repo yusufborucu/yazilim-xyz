@@ -18,8 +18,7 @@
     </div>    
     <div class="row">
       <div class="col-md-8">
-        <!--<p v-highlightjs v-html="getQuestion.description"></p>-->
-        <p class="question-detail-description" v-html="getQuestion.description"></p>
+        <p v-highlightjs v-html="getQuestion.description"></p>
       </div>     
     </div>    
     <div class="row">
@@ -117,6 +116,7 @@
 </template>
 
 <script>
+  import Vue from "vue";
   import { mapGetters } from "vuex";
   import { API_URL } from "../../config/env";
   import { VueEditor } from "vue2-editor";
@@ -128,6 +128,7 @@
 		},
     data() {
       return {
+        getQuestion: {},
         api_url: "",
         answer: "",
         saveButtonClicked: false,
@@ -146,10 +147,12 @@
 		},
     created() {
       this.api_url = API_URL;
-      this.$store.dispatch("question_detail", { id: this.$route.params.id });
+      Vue.http.get(`${API_URL}/question_detail/` + this.$route.params.id)
+				.then(response => {
+					this.getQuestion = response.body;
+				});
     },
     computed: {
-      ...mapGetters(["getQuestion"]),
       user_id() {
         return localStorage.getItem("user_id");
       }
