@@ -6,6 +6,11 @@ import VueResource from "vue-resource";
 import Notifications from 'vue-notification';
 import Vuelidate from 'vuelidate';
 import hljs from 'highlight.js';
+import VueSocketIO from 'vue-socket.io';
+
+Vue.use(VueResource);
+Vue.use(Notifications);
+Vue.use(Vuelidate);
 
 Vue.directive('highlightjs', {
   deep: true,
@@ -20,9 +25,10 @@ Vue.directive('highlightjs', {
   }
 });
 
-Vue.use(VueResource);
-Vue.use(Notifications);
-Vue.use(Vuelidate);
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: 'localhost:3000'
+}));
 
 Vue.http.interceptors.push((request, next) => {  
   let token = localStorage.getItem("token");

@@ -174,6 +174,11 @@
               answer: this.answer
             };
             this.$store.dispatch("reply", { ...data });
+            let que_user = {
+              user_id: this.getQuestion.user_id,
+              title: this.getQuestion.title
+            };
+            this.$socket.emit('que_user', que_user);
           }
         } else {
           $('#loginModal').modal('toggle');

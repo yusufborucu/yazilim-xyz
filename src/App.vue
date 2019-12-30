@@ -16,14 +16,38 @@
 <script>
   import Header from "./components/shared/Header";
   import Footer from "./components/shared/Footer";
+  import Vue from "vue";
 
   export default {
     components: {
       appHeader: Header,
       appFooter: Footer
     },
+    sockets: {
+      connect: () => {
+
+      },
+      notify_user: (data) => {
+        if (data.user_id == localStorage.getItem('user_id')) {
+          Vue.notify({
+            group: 'app',
+            type: 'success',
+            title: 'Cevap',
+            text: data.title + ' başlıklı sorunuza cevap geldi.',
+            duration: 3000,
+            speed: 1000
+          });
+        }
+      }
+    },
     created() {
       this.$store.dispatch("initAuth");
+      if (localStorage.getItem('user_id') != null) {
+        this.$socket.emit('con_user_id', localStorage.getItem('user_id'));
+        window.addEventListener('beforeunload', () => {
+          this.$socket.emit('dis_user_id', localStorage.getItem('user_id'));
+        });
+      }
     },
     computed: {
       isLoading() {

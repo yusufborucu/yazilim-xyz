@@ -73,6 +73,7 @@
 		methods: {
 			logout() {
 				this.$store.dispatch("logout");
+				this.$socket.emit('dis_user_id', localStorage.getItem('user_id'));
 			},
 			onSubmit() {
 				const path = `/search-result/${this.text}`;
