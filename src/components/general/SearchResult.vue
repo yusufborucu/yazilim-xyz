@@ -29,7 +29,7 @@
                         <div class="count view"><span>{{ question.reading }}</span><small>okuma</small></div>
                       </div>
                       <div class="question-center">
-                        <router-link :to="{ path: 'question-detail/' + question.id }" tag="a" class="question-title">
+                        <router-link :to="{ path: '/question-detail/' + question.id }" tag="a" class="question-title">
                           {{ question.title }}
                         </router-link>
                         <p class="question-description" v-html="question.description"></p>
@@ -38,32 +38,21 @@
                             <ul class="tag-list">
                               <li 
                                 v-bind:key="tag.id"
-                                v-for="tag in question.tags"><a href="#">{{ tag.tag }}</a></li>
+                                v-for="tag in question.tags">
+                                <router-link :to="{ path: '/tag-detail/' + tag.tag }" tag="a">{{ tag.tag }}</router-link>
+                              </li>
                             </ul>
                           </div>
                           <div class="author-date">
-                            <a href="#">
-                              <img :src="question.user.image != null ? api_url + question.user.image : '../../dist/profile.png'" height="16px" width="16px">
-                              <span class="username">{{ question.user.username }}</span>
-                            </a>
+                            <router-link :to="{ path: '/user-detail/' + question.user.id }" tag="a">															
+																<img :src="question.user.image != null ? api_url + question.user.image : '../../dist/profile.png'" height="16px" width="16px">
+																<span class="username">{{ question.user.username }}</span>
+                              </router-link>
                             <br>
                             <span class="date">{{ question.date }}</span>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <nav aria-label="...">
-                        <ul class="pagination justify-content-center">
-                          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Önceki Sayfa</a></li>
-                          <li class="page-item"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item active" aria-current="page"><a class="page-link" href="#">2</a></li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item"><a class="page-link" href="#">Sonraki Sayfa</a></li>
-                        </ul>
-                      </nav>
                     </div>
                   </div>
                 </div>

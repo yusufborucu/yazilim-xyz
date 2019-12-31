@@ -18,7 +18,7 @@
     </div>    
     <div class="row">
       <div class="col-md-8">
-        <p v-highlightjs v-html="getQuestion.description"></p>
+        <p v-html="getQuestion.description"></p>
       </div>     
     </div>    
     <div class="row">
@@ -121,6 +121,7 @@
   import { API_URL } from "../../config/env";
   import { VueEditor } from "vue2-editor";
   import { required } from "vuelidate/lib/validators";
+  import hljs from 'highlight.js';
   
   export default {
     components: {
@@ -128,7 +129,6 @@
 		},
     data() {
       return {
-        getQuestion: {},
         api_url: "",
         answer: "",
         saveButtonClicked: false,
@@ -146,13 +146,18 @@
       }
 		},
     created() {
+      this.$store.dispatch("question_detail", { id: this.$route.params.id })
+        .then(response => {
+          setTimeout(() => {
+            document.querySelectorAll('code').forEach((block) => {
+              hljs.highlightBlock(block);
+            });
+          }, 1000);          
+        });
       this.api_url = API_URL;
-      Vue.http.get(`${API_URL}/question_detail/` + this.$route.params.id)
-				.then(response => {
-					this.getQuestion = response.body;
-				});
     },
     computed: {
+      ...mapGetters(["getQuestion"]),
       user_id() {
         return localStorage.getItem("user_id");
       }
@@ -180,6 +185,7 @@
             };
             this.$socket.emit('que_user', que_user);
           }
+          this.answer = "";
         } else {
           $('#loginModal').modal('toggle');
         }

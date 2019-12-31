@@ -177,6 +177,10 @@
   }
 }
 
+.ql-snow .ql-editor code {
+  background-color: #23241f!important;
+}
+
 :root {
   --color-main: #3b648e;
   --color-main-opacity-15: rgba(59, 100, 142, 0.15);
@@ -248,6 +252,7 @@ svg {
         }
       }
       .search-content {
+        margin: 5px 150px 5px 150px;
         flex: 1;        
         .fg-icon {
           .form-control {

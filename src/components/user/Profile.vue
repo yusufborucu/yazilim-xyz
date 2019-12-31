@@ -23,32 +23,6 @@
       </div>
     </div>
     <hr/>
-    <div class="row">
-      <div class="col-md-4">
-        <h4>Son Sorular</h4>
-        <ul>
-          <li>Soru başlığı</li>
-          <li>Soru başlığı</li>
-          <li>Soru başlığı</li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <h4>Son Cevaplar</h4>
-        <ul>
-          <li>Soru başlığı</li>
-          <li>Soru başlığı</li>
-          <li>Soru başlığı</li>
-        </ul>
-      </div>
-      <div class="col-md-4">
-        <h4>Son Oylar</h4>
-        <ul>
-          <li>Soru başlığı</li>
-          <li>Soru başlığı</li>
-          <li>Soru başlığı</li>
-        </ul>
-      </div>
-    </div>
     <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

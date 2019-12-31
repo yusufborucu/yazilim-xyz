@@ -12,14 +12,6 @@
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="collapse navbar-collapse main-menu-content" id="navbarSupportedContent">
-							<ul class="navbar-nav">
-								<li class="nav-item active">
-									<a class="nav-link" href="#">Sorular</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Etiketler</a>
-								</li>
-							</ul>
 							<form @submit.prevent="onSubmit" class="search-content">
 								<div class="form-group fg-icon mb-0">
 									<input v-model="text" type="text" class="form-control" placeholder="Arama yap...">
@@ -78,6 +70,7 @@
 			onSubmit() {
 				const path = `/search-result/${this.text}`;
 				if (this.$route.path !== path) this.$router.push(path);
+				this.text = "";
 			}
 		},
 		computed: {

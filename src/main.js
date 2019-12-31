@@ -22,6 +22,15 @@ Vue.directive('highlightjs', {
       }
       hljs.highlightBlock(target);
     });
+  },
+  componentUpdated: function(el, binding) {
+    let targets = el.querySelectorAll('code');
+    targets.forEach((target) => {
+      if (binding.value) {
+        target.textContent = binding.value;
+        hljs.highlightBlock(target);
+      }
+    });
   }
 });
 
