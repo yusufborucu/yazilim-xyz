@@ -36,7 +36,7 @@ Vue.directive('highlightjs', {
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'localhost:3000'
+  connection: 'https://yazilim-xyz-socket.herokuapp.com'
 }));
 
 Vue.http.interceptors.push((request, next) => {  
