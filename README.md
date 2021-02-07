@@ -1,18 +1,33 @@
 # yazilim-xyz
 
-> A Vue.js project
+Yazılım Soru Cevap Platformu projesi olan yazilim.xyz'nin Frontend tarafının yer aldığı repo.
 
-## Build Setup
+Backend: https://github.com/yusufborucu/yazilim-xyz-api
 
-``` bash
-# install dependencies
-npm install
+Socket: https://github.com/yusufborucu/yazilim-xyz-socket
 
-# serve with hot reload at localhost:8080
-npm run dev
+## Projenin amacı
 
-# build for production with minification
-npm run build
-```
+Yazılım geliştiriciler için bir soru cevap platformu oluşturmak.
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Projenin içeriği
+
+Üyelik işlemleri, soru sorma, cevap yazma, oy verme, etiketler ve sıralama.
+
+## Projenin teknik altyapısı;
+
+* Tasarım: Html, Css (Scss)
+* Veritabanı: MySQL
+* Backend: Laravel
+  * Authentication işlemleri: Passport
+* Frontend: Vue.js
+  * State yönetimi: vuex
+  * Kod renklendirme: highlight.js
+  * Kullanıcı bilgilendirme: vue-notification
+  * Routing işlemleri: vue-router
+  * Rich text editor: vue2-editor
+  * Validation işlemleri: vuelidate
+  * Socket Client: vue-socket.io
+* Anlık veri iletişimi: Node.js (Socket)
+  * Kullanıcının, sorusuna cevap geldiği anda bilgilendirilmesi
+* Deploy: Shared Hosting (Laravel, Vue.js), Heroku (Node.js)
