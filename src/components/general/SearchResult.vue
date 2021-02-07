@@ -88,6 +88,11 @@
 		},
 		computed: {
 			...mapGetters(["getSearchResult"])
-		}
+    },
+    watch: {
+      $route (to, from) {
+        this.$store.dispatch("search", { text: this.$route.params.text });
+      }
+    } 
 	}
 </script>

@@ -88,6 +88,11 @@
 		},
 		computed: {
 			...mapGetters(["getTagDetail"])
-		}
+    },
+    watch: {
+      $route (to, from) {
+        this.$store.dispatch("tag_detail", { tag: this.$route.params.tag });
+      }
+    } 
 	}
 </script>
