@@ -41,6 +41,7 @@
       }
     },
     created() {
+      console.log('test');
       this.$store.dispatch("initAuth");
       if (localStorage.getItem('user_id') != null) {
         this.$socket.emit('con_user_id', localStorage.getItem('user_id'));
